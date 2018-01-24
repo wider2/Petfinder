@@ -1,0 +1,301 @@
+package pl.surecase.eu;
+
+import org.greenrobot.greendao.generator.DaoGenerator;
+import org.greenrobot.greendao.generator.Schema;
+
+public class DatabaseDaoGenerator {
+    private final static int DATABASE_VERSION = 24;
+
+    public static void main(String args[]) throws Exception {
+
+        Schema schema = new Schema(DATABASE_VERSION, "petfinder.transferwise.dao");
+        schema.enableKeepSectionsByDefault();
+        schema.enableActiveEntitiesByDefault();
+
+        /**
+         * Login Entity
+         */
+        /*
+        EntityHelper loginDataHelper = new EntityHelper(schema, "LoginData")
+                .setStringId("id")
+                .addStringProperties("accessToken", "encryptionPublicKey", "mobileToken", "authKey")
+                .addBooleanProperties("validated", "validatedNumber", "newUser", "registrationRequired");
+
+        EntityHelper signupDataHelper = new EntityHelper(schema, "SignupData")
+                //.setStringId("id")
+                .addStringProperties("body", "error", "audit", "uid");
+*/
+
+        EntityHelper catalogueDataHelper = new EntityHelper(schema, "Catalogue")
+                .setIntegerId(true)
+                .addStringProperties("breed", "animal");
+
+
+        EntityHelper petDataHelper = new EntityHelper(schema, "Pet")
+                .setIntegerId(true)
+                //.addLongProperties("timestamp")
+                .addIntegerProperties("pet_id")
+                .addStringProperties("age", "size", "name", "sex", "description", "breed", "animal", "last_update"); //"shelter_id"
+
+
+        EntityHelper petMediaDataHelper = new EntityHelper(schema, "Pet_Media")
+                .setIntegerId(true)
+                .addIntegerProperties("pet_id")
+                .addStringProperties("photo", "size");
+
+
+        EntityHelper petContactDataHelper = new EntityHelper(schema, "Pet_Contact")
+                .setIntegerId(true)
+                .addIntegerProperties("pet_id")
+                .addStringProperties("state", "city", "zip", "address", "phone", "email");
+
+        EntityHelper petBreedDataHelper = new EntityHelper(schema, "Pet_Breed")
+                .setIntegerId(true)
+                .addIntegerProperties("pet_id")
+                .addStringProperties("breed");
+
+
+/*
+        EntityHelper signupDataHelper = new EntityHelper(schema, "LoginData")
+                //.setStringId("id")
+                .setIntegerId(true)
+                .addLongProperties("timestamp")
+                .addStringProperties("body", "error", "audit", "uid");
+
+
+        EntityHelper shopDataHelper = new EntityHelper(schema, "ShopData")
+                .setIntegerId(true)
+                .addStringProperties("body", "error", "shop_id", "s_name", "s_address", "s_phone", "s_email", "s_url", "s_info", "s_img", "s_person", "s_skype", "cart_id");
+*/
+/*
+        EntityHelper queryDataHelper = new EntityHelper(schema, "QueryProductLayer")
+                .setIntegerId(true)
+                .addStringProperties("pl-created-time", "pl-upd-time", "pl-prod-gtin", "pl-prod-name", "pl-lng", "pl-brand-name", "pl-brand-own-name");
+*/
+
+        /**
+         * Application Setttings
+         */
+/*
+        EntityHelper productHelper = new EntityHelper(schema, "ProductShopping")
+                .setIntegerId(true)
+                .addLongProperties("timestamp")
+                .addIntegerProperties("quantity")
+                .addStringProperties("login_id", "ean_code", "ean_format", "tagfield", "name", "order_id", "price", "price_cur", "cat_id");
+
+
+        EntityHelper addHelper = new EntityHelper(schema, "Products")
+                .setIntegerId(true)
+                .addLongProperties("created_timestamp", "updated_timestamp")
+                .addStringProperties("name", "gtin", "description", "shortly", "language",
+                        "category", "brand", "brand_owner", "image_url", "color_hex", "url",
+                        "weight", "country_origin", "nutrition", "warnings", "user_guide", "cat_id");
+
+        EntityHelper discountHelper = new EntityHelper(schema, "Discounts")
+                .setIntegerId(true)
+                .addLongProperties("ts_valid_until")
+                .addStringProperties("ean_code", "discount", "type");
+
+        EntityHelper priceHelper = new EntityHelper(schema, "Prices")
+                .setIntegerId(true)
+                .addLongProperties("timestamp")
+                .addStringProperties("ean_code", "price", "price_cur");
+
+        EntityHelper catHelper = new EntityHelper(schema, "Catalogue")
+                .setIntegerId(true)
+                .addStringProperties("group_id", "cat_id", "group_est", "cat_est", "tagfield");
+
+
+        //order_id, shop_id, cart_id, account_id, price, price0, price_cur, tax, plist, shop_name, seed, ts)
+
+        new EntityHelper(schema, "Orders")
+                .setIntegerId(true)
+                .addLongProperties("timestamp")
+                .addIntegerProperties("quantity")
+                .addStringProperties("order_id", "cart_id", "account_id", "price", "price0", "price_cur", "tax", "tagfield");
+*/
+
+//gtin - ean
+//created, lastUpdates timestamp
+//buyLinks - amazon url
+//longDescription, shortDescription
+//color, size, weight, screen-resolution, ...
+
+//defaultImage - get gtin
+//name = 55b8d77fe4b000299f51177f.jpg
+//https://api.productlayer.com/0.5/product/09785957323952/default_image?max_width=486&max_height=486&crop=true
+//https://api.productlayer.com/0.5/product/04006381333627/default_image?max_width=486&max_height=486&crop=true
+
+
+
+/*
+        EntityHelper commentHelper = new EntityHelper(schema, "ProductComment")
+                //.setStringId("id")
+                .setIntegerId(true)
+                .addLongProperties("timestamp")
+                .addStringProperties("cert", "operator", "uid", "comment");
+        */
+        //voicemailHelper.singleEntityMapping(categoryHelper.getEntity(), voicemailHelper.addForeignKeyProperty("categoryId", true));
+
+        //.addIdProperty().primaryKey().autoincrement()
+        //.setStringId("id")
+
+        /*
+        //Map Category to Address
+        // addressHelper.singleEntityMapping(categoryHelper.getEntity(), addressHelper.addForeignKeyProperty("categoryId", true));
+        //Map Addresses to SimpleContact
+        Property addressContactId = addressHelper.addForeignKeyProperty("contactId", false);
+        addressHelper.multipleEntityMapping(simpleContactHelper.getEntity(), addressContactId, "addresses");
+        //Map Addresses to Category using contact reference to prevent getAddresses() from returning all the Addresses that belong to this category
+        addressHelper.multipleEntityMapping(categoryHelper.getEntity(), addressContactId, "addresses");
+*/
+
+
+/*
+        EntityHelper applicationSettingsHelper = new EntityHelper(schema, "ApplicationSettings")
+
+                .setIntegerId(false).addStringProperties("SelectedCategoryId","GCMTOKEN","blockedNumbers","phoneBookDeleteEnry")
+                .addBooleanProperties("FavoriteFilter","CallLogsDownLoaded", "VoicemailsDownloaded", "SupportContactCreated",
+                        "ThreadDownloaded", "isPhoneBookContactMappingNeeded","SyncPhoneBook", "ExcludeLocalContacts",
+                        "ContactsDownloadSuccessful","sortOrder","displayOrder",
+                        "ShouldDownloadNewCalllogs", "ShouldDownloadNewMessages", "ShouldDownloadNewVoicemails", "HasSeenHideCategoryHelp", "shouldShowStealthPassword")
+                .addLongProperties("lastPubNubTimeToken", "lastConnectionTime");
+
+
+
+        EntityHelper categorySettingsHelper = new EntityHelper(schema,"CategorySettings")
+                .setStringId("id").addBooleanProperties("CallLogsDownLoaded", "VoicemailsDownloaded", "ThreadDownloaded");
+
+        EntityHelper downloadHelper = new EntityHelper(schema, "ThreadMessagesDownloadedHelper")
+                .setStringId("id").addBooleanProperties("Downloaded", "hasSeenDeletionConfirmation");
+
+
+
+
+        @SuppressWarnings("unused") EntityHelper userHelper = new EntityHelper(schema, "UserProfile")
+                .setIntegerId(false)
+                .addStringProperties("firstName", "lastName", "email", "sipUsername", "birthday",
+                        "imageUrl", "supportPhone", "homePhoneBookDeviceToken","sortOrder","displayOrder",
+                        "phoneBookName", "credits", "appVersion", "phoneLocale","phoneCountry","signUpImageUrl")
+                .addBooleanProperties("isPremium", "searchable", "isFacebookUser", "validCelebrity", "appRater", "syncContacts");
+
+        @SuppressWarnings("unused") EntityHelper pushNotificationHelper = new EntityHelper(schema, "PushNotification").setStringId("id");
+
+        EntityHelper categoryHelper = new EntityHelper(schema, "Category")
+                .setStringId("id")
+                .addStringProperties("name", "color", "profileImageUrl", "coverImageUrl", "privatePass", "phoneNumberPurchase",
+                        "company", "notes", "birthday", "urls", "onoffNumber", "virtualNumber", "formattedVirtualNumber",
+                        "message", "serviceNumber", "voicemailCallingPartyImageUrl", "voicemailUrl", "voicemailLength",
+                        "voicemailGreetingUrl", "expirationDate", "productId", "price", "displayName", "countryIso", "countryIsoCode",
+                         "state", "categoryLocale")
+                .addBooleanProperties("callEnabled", "voicemailEnabled", "messageEnabled", "wallEnabled", "active", "isPrivate", "deleted",
+                        "isUsedForProfilePic", "isVisible", "isSettingsOpened")
+                .addByteArrayProperties("orderId")
+                .addIntegerProperties("numberOfContacts")
+                .addLongProperties("privateTimer");
+
+        EntityHelper simpleContactHelper = new EntityHelper(schema, "SimpleContact")
+                .setStringId("id")
+                .addStringProperties("name", "onoffNumber", "firstName", "lastName", "jobTitle", "company", "color", "birthday",
+                        "notes", "imageUrl", "phoneBookId", "targetCategoryId", "sourceCategoryId", "targetUserId",
+                        "sipUsername", "virtualPhoneNumber", "version",  "displayName", "sortName", "inviteStatus")
+                .addBooleanProperties("favorite", "isMe", "isVisible", "isSelected", "isFriend", "isSearchResult", "isFriendRequest", "isSuggestion",
+                        "friendRequested", "blocked", "validCelebrity")
+                .addIntegerProperties("versionSum");
+        //Map Category to SimpleContact
+        simpleContactHelper.singleEntityMapping(categoryHelper.getEntity(), simpleContactHelper.addForeignKeyProperty("categoryId", true));
+
+        EntityHelper addressHelper = new EntityHelper(schema, "Address")
+                .setIntegerId(true)
+                .addStringProperties("street1", "street2", "country", "postalCode", "city", "pobox", "type", "state");
+
+        //Map Category to Address
+       // addressHelper.singleEntityMapping(categoryHelper.getEntity(), addressHelper.addForeignKeyProperty("categoryId", true));
+        //Map Addresses to SimpleContact
+        Property addressContactId = addressHelper.addForeignKeyProperty("contactId", false);
+        addressHelper.multipleEntityMapping(simpleContactHelper.getEntity(), addressContactId, "addresses");
+        //Map Addresses to Category using contact reference to prevent getAddresses() from returning all the Addresses that belong to this category
+        addressHelper.multipleEntityMapping(categoryHelper.getEntity(), addressContactId, "addresses");
+
+        EntityHelper phoneHelper = new EntityHelper(schema, "Phone")
+                .setIntegerId(true)
+                .addStringProperties("number", "type", "normalNumber", "targetID")
+                .addBooleanProperties("favorite", "isFriend");
+        //Map Category to Phone
+       // phoneHelper.singleEntityMapping(categoryHelper.getEntity(), phoneHelper.addForeignKeyProperty("categoryId", true));
+        //Map Phones to SimpleContact
+        Property phoneContactId = phoneHelper.addForeignKeyProperty("contactId", false);
+        phoneHelper.multipleEntityMapping(simpleContactHelper.getEntity(), phoneContactId, "phones");
+        //Map Phones to Category using contact reference to prevent getPhones() from returning all the Phones that belong to this category
+        phoneHelper.multipleEntityMapping(categoryHelper.getEntity(), phoneContactId, "phones");
+
+        EntityHelper emailHelper = new EntityHelper(schema, "Email")
+                .setIntegerId(true)
+                .addStringProperties("email", "type");
+        //Map Category to Email
+        //emailHelper.singleEntityMapping(categoryHelper.getEntity(), emailHelper.addForeignKeyProperty("categoryId", true));
+        //Map Emails to SimpleContact
+        Property emailContactId = emailHelper.addForeignKeyProperty("contactId", false);
+        emailHelper.multipleEntityMapping(simpleContactHelper.getEntity(), emailContactId, "emails");
+        //Map Emails to Category using contact reference to prevent getEmails() from returning all the Emails that belong to this category
+        emailHelper.multipleEntityMapping(categoryHelper.getEntity(), emailContactId, "emails");
+
+//        EntityHelper imHelper = new EntityHelper(schema, "IM")
+//                .setIntegerId(true)
+//                .addStringProperties("profile", "type");
+//        //Map Category to IM
+//       // imHelper.singleEntityMapping(categoryHelper.getEntity(), imHelper.addForeignKeyProperty("categoryId", true));
+//        //Map IMs to SimpleContact
+//        Property imContactId = imHelper.addForeignKeyProperty("contactId", false);
+//        imHelper.multipleEntityMapping(simpleContactHelper.getEntity(), imContactId, "ims");
+//        //Map IMs to Category using contact reference to prevent getIMs() from returning all the IMs that belong to this category
+//        imHelper.multipleEntityMapping(categoryHelper.getEntity(), imContactId, "ims");
+
+        EntityHelper callLogHelper = new EntityHelper(schema, "CallLog")
+                .setStringId("id")
+                .addStringProperties("startedAt", "userId", "secondPartyPhone", "secondPartyPhoneType", "secondPartyContactId",
+                        "secondPartyName", "endedAt", "status", "created", "t", "imageUrl")
+                .addBooleanProperties("secondPartyBlocked", "incoming", "clir", "isMarkedForDeletion", "voipCall", "voipAudio")
+                .addLongProperties("duration");
+        //Map Category and SimpleContact to CallLog
+        callLogHelper.singleEntityMapping(categoryHelper.getEntity(), callLogHelper.addForeignKeyProperty("categoryId", true));
+        //callLogHelper.singleEntityMapping(simpleContactHelper.getEntity(), callLogHelper.addForeignKeyProperty("contactId", true));
+
+        EntityHelper threadHelper = new EntityHelper(schema, "ThreadMessage")
+                .setStringId("threadId")
+                .addStringProperties("id", "sourcePhoneNumber", "targetPhoneNumber", "targetCategoryId", "sourceCategoryId","createdAt", "seenAt", "type", "body", "mediaLength", "contentUrl")
+                .addBooleanProperties("incoming", "isSeen", "isSent", "isDelivered", "isSeenByOpponent", "isMarkedForDeletion", "isTemp");
+        //Map Category and SimpleContact to Thread
+        threadHelper.singleEntityMapping(categoryHelper.getEntity(), threadHelper.addForeignKeyProperty("categoryId", true));
+
+        EntityHelper messageHelper = new EntityHelper(schema, "Message")
+                .setStringId("id")
+                .addStringProperties("sourcePhoneNumber", "targetPhoneNumber", "targetCategoryId", "sourceCategoryId", "createdAt", "seenAt", "type", "body", "mediaLength", "contentUrl", "threadId", "nextAttemptAt", "videoThumbnail")
+                .addBooleanProperties("incoming", "isSeen", "isSent", "isDelivered", "isSeenByOpponent", "isMarkedForDeletion","isError");
+        //Map Category and SimpleContact to Message
+        messageHelper.singleEntityMapping(categoryHelper.getEntity(), messageHelper.addForeignKeyProperty("categoryId", true));
+      //  messageHelper.singleEntityMapping(simpleContactHelper.getEntity(), messageHelper.addForeignKeyProperty("contactId", true));
+
+        EntityHelper voicemailHelper = new EntityHelper(schema, "Voicemail")
+                .setStringId("id")
+                .addStringProperties("userId", "url", "audioLength", "created", "listened", "delivered", "callingPartyPhone",
+                        "callingPartyName", "callingPartyUrl", "callingPartyContactId", "callingPartyCategoryId", "callingPartyPhoneType")
+                .addBooleanProperties("isSeen", "isVisible", "isMarkedForDeletion");
+        //Map Category and SimpleContact to Voicemail
+        voicemailHelper.singleEntityMapping(categoryHelper.getEntity(), voicemailHelper.addForeignKeyProperty("categoryId", true));
+       // voicemailHelper.singleEntityMapping(simpleContactHelper.getEntity(), voicemailHelper.addForeignKeyProperty("contactId", true));
+
+
+
+        EntityHelper countersHelper = new EntityHelper(schema, "Counters").setIntegerId(true).
+                addIntegerProperties("Messages","Calllogs","Voicemails", "Wall", "FriendsRequest", "MessagesThread");
+
+
+
+        EntityHelper additionalSettingsHelper = new EntityHelper(schema, "AdditionalSettings")
+                .setIntegerId(true)
+                .addIntegerProperties("numberPurchaseCount", "countDownToRateUsDialog");
+*/
+        new DaoGenerator().generateAll(schema, args[0]);
+    }
+}

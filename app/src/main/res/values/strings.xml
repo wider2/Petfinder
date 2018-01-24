@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Petfinder</string>
+
+    <string name="categories_found">Found categories</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="size">Size</string>
+    <string name="date_update">Date update</string>
+    <string name="breed">Breed</string>
+    <string name="description">Description</string>
+
+    <string name="no_connection">There is no internet connection found. Please check the network settings, setup WiFi.</string>
+    <string name="msg_error_occurred">There is error occurred while implementing this request.</string>
+    <string name="network_settings">Network settings</string>
+    <string name="info_not_found">Item description not found.</string>
+    <string name="hello">Please click on breed of cat to see random profile from PetFinderAPI.</string>
+    <string name="please_wait_loading">Please wait while data are loading</string>
+    <string name="server_response">Server response</string>
+    <string name="no_response">Api server is busy right now and heve no response. Please wait some time to reload again.</string>
+
+    <string name="contact">Contact</string>
+    <string name="address">address</string>
+    <string name="phone">Phone</string>
+
+</resources>

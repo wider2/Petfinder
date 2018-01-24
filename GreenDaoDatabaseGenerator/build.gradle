@@ -1,0 +1,25 @@
+project(':GreenDaoDatabaseGenerator') {
+    apply plugin: 'application'
+    apply plugin: 'java'
+
+    mainClassName = "pl.surecase.eu.DatabaseDaoGenerator"
+    // edit output direction
+    def outputDir = '../app/src/main/java/'
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        // For your generator project:
+        compile 'org.freemarker:freemarker:2.3.22'
+        // https://mvnrepository.com/artifact/org.greenrobot/greendao-generator
+        compile group: 'org.greenrobot', name: 'greendao-generator', version: '3.2.0'
+    }
+
+    task createDocs {
+        def docs = file(outputDir)
+        docs.mkdirs()
+    }
+
+    run {
+        args outputDir
+    }
+}
